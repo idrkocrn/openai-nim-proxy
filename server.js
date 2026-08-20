@@ -61,6 +61,11 @@ app.post('/v1/chat/completions', async (req, res) => {
   try {
     const { model, messages, temperature, max_tokens, stream } = req.body;
     
+    console.log('=== INCOMING REQUEST ===');
+    console.log('Model:', model);
+    console.log('NIM model:', MODEL_MAPPING[model]);
+    console.log('NIM API base:', NIM_API_BASE);
+    
     // Smart model selection with fallback
     let nimModel = MODEL_MAPPING[model];
     if (!nimModel) {
@@ -100,6 +105,10 @@ app.post('/v1/chat/completions', async (req, res) => {
       extra_body: ENABLE_THINKING_MODE ? { chat_template_kwargs: { thinking: true } } : undefined,
       stream: stream || false
     };
+
+    console.log('=== SENDING TO NIM ===');
+    console.log('URL:', `${NIM_API_BASE}/chat/completions`);
+    console.log('Model:', nimModel);
     
     // Make request to NVIDIA NIM API
     const response = await axios.post(`${NIM_API_BASE}/chat/completions`, nimRequest, {
@@ -214,7 +223,10 @@ app.post('/v1/chat/completions', async (req, res) => {
     }
     
   } catch (error) {
-    console.error('Proxy error:', error.message);
+    console.error('=== PROXY ERROR ===');
+    console.error('Message:', error.message);
+    console.error('Status:', error.response?.status);
+    console.error('Response:', JSON.stringify(error.response?.data));
     
     res.status(error.response?.status || 500).json({
       error: {
