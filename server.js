@@ -226,8 +226,10 @@ app.post('/v1/chat/completions', async (req, res) => {
     console.error('=== PROXY ERROR ===');
     console.error('Message:', error.message);
     console.error('Status:', error.response?.status);
-    console.error('Response:', JSON.stringify(error.response?.data));
-    
+    console.error('Response:', error.response?.data);
+    console.error('URL:', error.config?.url);
+    console.error('Request model:', error.config?.data);
+
     res.status(error.response?.status || 500).json({
       error: {
         message: error.message || 'Internal server error',
