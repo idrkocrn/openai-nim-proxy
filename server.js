@@ -65,6 +65,7 @@ app.post('/v1/chat/completions', async (req, res) => {
     console.log('Model:', model);
     console.log('NIM model:', MODEL_MAPPING[model]);
     console.log('NIM API base:', NIM_API_BASE);
+    console.log('Messages:', JSON.stringify(messages, null, 2));
     
     // Smart model selection with fallback
     let nimModel = MODEL_MAPPING[model];
