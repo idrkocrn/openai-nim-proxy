@@ -26,9 +26,9 @@ const MODEL_MAPPING = {
   'gpt-4': 'nvidia/nemotron-3-super-120b-a12b',
   'gpt-4-turbo': 'nvidia/nemotron-3-ultra-550b-a55b',
   'gpt-4o': 'minimaxai/minimax-m3',
-  'claude-3-opus': 'openai/gpt-oss-120b',
-  'claude-3-sonnet': 'openai/gpt-oss-20b',
-  'gemini-pro': 'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning' 
+  'claude-3-opus': 'deepseek-ai/deepseek-v4-pro-0813',
+  'claude-3-sonnet': 'deepseek-ai/deepseek-v4-flash-0731',
+  'gemini-pro': 'nvidia/nemotron-3.5-lightning-30b-a3b' 
 };
 
 // Health check endpoint
