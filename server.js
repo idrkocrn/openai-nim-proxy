@@ -143,6 +143,11 @@ app.post('/v1/chat/completions', async (req, res) => {
             
             try {
               const data = JSON.parse(line.slice(6));
+
+              console.log('NIM DELTA:', JSON.stringify(data.choices?.[0]?.delta));
+              console.log('FINISH REASON:', data.choices?.[0]?.finish_reason);
+
+              
               if (data.choices?.[0]?.delta) {
                 const reasoning = data.choices[0].delta.reasoning_content;
                 const content = data.choices[0].delta.content;
