@@ -149,12 +149,6 @@ app.post('/v1/chat/completions', async (req, res) => {
               
               
               if (data.choices?.[0]?.delta) {
-                const delta = data.choices[0].delta;
-                
-                // Ensure every delta has an assistant role.
-                if (!delta.role) {
-                  delta.role = 'assistant';
-                }
                 
                 const reasoning = data.choices[0].delta.reasoning_content;
                 const content = data.choices[0].delta.content;
